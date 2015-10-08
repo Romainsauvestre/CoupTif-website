@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @hairdresser.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @hairdresser.last_name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @hairdresser.description %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <img src=<%= @hairdresser.photo %> </img>
+</p>
+
+<%= link_to 'Edit', edit_hairdresser_path(@hairdresser) %> |
+<%= link_to 'Back', hairdressers_path %>
