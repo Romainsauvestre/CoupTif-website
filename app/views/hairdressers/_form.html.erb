@@ -1,33 +1,52 @@
-<%= form_for(@hairdresser) do |f| %>
-  <% if @hairdresser.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@hairdresser.errors.count, "error") %> prohibited this hairdresser from being saved:</h2>
+<%= form_for @hairdresser, :html => { :class => "form-horizontal hairdresser" } do |f| %>
 
-      <ul>
-      <% @hairdresser.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @hairdresser.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@hairdresser.errors.count, "error") %> prohibited this hairdresser from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @hairdresser.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+  <div class="control-group">
+    <%= f.label :first_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :first_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@hairdresser[:first_name]) %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+  <div class="control-group">
+    <%= f.label :last_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :last_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@hairdresser[:last_name]) %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'form-control' %>
+    </div>
+    <%= error_span(@hairdresser[:description]) %>
   </div>
-  <div class="field">
-    <%= f.label :photo %><br>
-    <%= f.text_field :photo %>
+  <div class="control-group">
+    <%= f.label :photo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :photo, :class => 'form-control' %>
+    </div>
+    <%= error_span(@hairdresser[:photo]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            hairdressers_path, :class => 'btn btn-default' %>
+
 <% end %>
