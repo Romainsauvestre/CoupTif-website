@@ -7,4 +7,10 @@ class ServicesController < ApplicationController
     @services = Service.find_by_hairdresser_id(@id)
   end
 
+  #GET /hairdressers/:id/services
+
+  def new
+    @services = Service.new
+  end
+
 end
