@@ -16,4 +16,5 @@
 !/log/.keep
 /tmp
 
-git
+# Ignore .idea files
+.idea/
