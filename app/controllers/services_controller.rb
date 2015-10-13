@@ -1,35 +1,31 @@
 class ServicesController < ApplicationController
+  before_action :set_hairdresser, only: [:index, :show, :new, :edit, :create, :update, :destroy]
 
   # GET /hairdressers/:hairdresser_id/services
   # GET /hairdressers/:hairdresser_id/services.json
   def index
-    @hairdresser = Hairdresser.find(params[:hairdresser_id])
     @services = @hairdresser.services
   end
 
   # GET /hairdressers/:hairdresser_id/services/:id
   # GET /hairdressers/:hairdresser_id/services/:id.json
   def show
-    @hairdresser = Hairdresser.find(params[:hairdresser_id])
     @service = @hairdresser.services.find(params[:id])
   end
 
   # GET /hairdressers/:hairdresser_id/services/new
   def new
-    @hairdresser = Hairdresser.find(params[:hairdresser_id])
     @service = @hairdresser.services.new
   end
 
   # GET /hairdressers/:hairdresser_id/services/:id/edit
   def edit
-    @hairdresser = Hairdresser.find(params[:hairdresser_id])
     @service = @hairdresser.services.find(params[:id])
   end
 
   # POST /hairdressers/:hairdresser_id/services
   # POST /hairdressers/:hairdresser_id/services.json
   def create
-    @hairdresser = Hairdresser.find(params[:hairdresser_id])
     @service = @hairdresser.services.create(service_params)
 
     respond_to do |format|
@@ -46,7 +42,6 @@ class ServicesController < ApplicationController
   # PATCH/PUT /hairdressers/:hairdresser_id/services/:id
   # PATCH/PUT /hairdressers/:hairdresser_id/services/:id.json
   def update
-    @hairdresser = Hairdresser.find(params[:hairdresser_id])
     @service = @hairdresser.services.find(params[:id])
 
     respond_to do |format|
@@ -63,7 +58,6 @@ class ServicesController < ApplicationController
   # DELETE /hairdressers/:hairdresser_id/services/:id
   # DELETE /hairdressers/:hairdresser_id/services/:id.json
   def destroy
-    @hairdresser = Hairdresser.find(params[:hairdresser_id])
     @service = @hairdresser.services.find(params[:id])
 
     @service.destroy
@@ -75,6 +69,10 @@ class ServicesController < ApplicationController
 
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_hairdresser
+    @hairdresser = Hairdresser.find(params[:hairdresser_id])
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def service_params
