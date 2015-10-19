@@ -11,8 +11,12 @@
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @hairdresser.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:photo) %>:</strong></dt>
-  <dd><img src=<%= @hairdresser.photo %>></dd>
+  <dd><img src= "<%= @hairdresser.photo %>" style = "width: 50%; height: 50%"></dd>
+  <dt><strong>Services</strong></dt>
+  <dd><%= link_to 'Services', hairdresser_services_path(@hairdresser),
+                  :class => 'btn btn-default' %> </dd>
 </dl>
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               hairdressers_path, :class => 'btn btn-default'  %>
@@ -23,3 +27,4 @@
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+
