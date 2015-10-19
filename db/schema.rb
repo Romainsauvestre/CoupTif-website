@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20151008222506) do
     t.text     "description"
     t.float    "price"
     t.string   "photo"
+    #TODO: add field duration
     t.integer  "hairdresser_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
