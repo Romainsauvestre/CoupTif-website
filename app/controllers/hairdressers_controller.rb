@@ -61,6 +61,12 @@ class HairdressersController < ApplicationController
     end
   end
 
+  # Geolocalisation
+  def nearby
+    distance = params[:distance] || 1
+    @hairdressers = Hairdresser.within(distance, :units => :kms, :origin => [params[:lat], params[:lng]])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hairdresser
