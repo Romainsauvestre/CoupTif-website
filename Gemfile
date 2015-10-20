@@ -13,6 +13,8 @@ end
 
 gem 'tzinfo-data'
 
+gem 'devise'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,7 +42,7 @@ gem 'geokit-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
+# Use Unicorn as the app serve
 # gem 'unicorn'
 
 # Use Capistrano for deployment

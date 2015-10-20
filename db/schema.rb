@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20151020143834) do
 
+
   create_table "hairdressers", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
