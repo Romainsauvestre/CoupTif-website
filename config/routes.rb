@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :hairdressers do
     resources :services
+    collection do
+      get 'nearby'
+    end
   end
 
-  collection do
-    get 'nearby'
-  end
+
 
   root 'hairdressers#index'
 
