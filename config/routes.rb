@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     resources :services
   end
 
+  collection do
+    get 'nearby'
+  end
+
   root 'hairdressers#index'
 
 
