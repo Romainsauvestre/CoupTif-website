@@ -1,5 +1,10 @@
 class ServicesController < ApplicationController
-  before_action :set_hairdresser, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!, except: [:book]
+  before_action :set_hairdresser, only: [:index, :show, :new, :edit, :create, :update, :destroy, :book]
+  before_action :set_service, only: [:show, :edit, :update, :destroy, :book]
+
+  # On saute une etape de securite si on appel BOOK en JSON
+  skip_before_action :verify_authenticity_token, only: [:book]
 
   # GET /hairdressers/:hairdresser_id/services
   # GET /hairdressers/:hairdresser_id/services.json
@@ -10,7 +15,6 @@ class ServicesController < ApplicationController
   # GET /hairdressers/:hairdresser_id/services/:id
   # GET /hairdressers/:hairdresser_id/services/:id.json
   def show
-    @service = @hairdresser.services.find(params[:id])
   end
 
   # GET /hairdressers/:hairdresser_id/services/new
@@ -20,7 +24,6 @@ class ServicesController < ApplicationController
 
   # GET /hairdressers/:hairdresser_id/services/:id/edit
   def edit
-    @service = @hairdresser.services.find(params[:id])
   end
 
   # POST /hairdressers/:hairdresser_id/services
@@ -42,8 +45,6 @@ class ServicesController < ApplicationController
   # PATCH/PUT /hairdressers/:hairdresser_id/services/:id
   # PATCH/PUT /hairdressers/:hairdresser_id/services/:id.json
   def update
-    @service = @hairdresser.services.find(params[:id])
-
     respond_to do |format|
       if @service.update(service_params)
         format.html { redirect_to hairdresser_service_path(@hairdresser, @service), notice: 'Service was successfully updated.' }
@@ -58,8 +59,6 @@ class ServicesController < ApplicationController
   # DELETE /hairdressers/:hairdresser_id/services/:id
   # DELETE /hairdressers/:hairdresser_id/services/:id.json
   def destroy
-    @service = @hairdresser.services.find(params[:id])
-
     @service.destroy
     respond_to do |format|
       format.html { redirect_to hairdresser_services_path(@hairdresser), notice: 'Service was successfully destroyed.' }
@@ -67,6 +66,22 @@ class ServicesController < ApplicationController
     end
   end
 
+  # POST /hairdressers/:hairdresser_id/services/:id/book.json
+  def book
+    @booking = Booking.create(booking_params)
+    # on precise que le nouvel objet correspond au service
+    @booking.service = @service
+    #@booking.user = @user #TODO: add @user
+
+    respond_to do |format|
+      if @booking.save
+        format.json
+      else
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end    end
+
+
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.
@@ -74,9 +89,18 @@ class ServicesController < ApplicationController
     @hairdresser = Hairdresser.find(params[:hairdresser_id])
   end
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_service
+    @service = @hairdresser.services.find(params[:id])
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def service_params
     params.require(:service).permit(:name, :price, :description, :photo)
+  end
+
+  def booking_params
+    params.require(:booking).permit(:start_time, :end_time)
   end
 
 end
