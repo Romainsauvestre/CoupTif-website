@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_action :authenticate_user!, except: [:book]
+  before_action :authenticate_user!, except: [:book] #TODO: remove
   before_action :set_hairdresser, only: [:index, :show, :new, :edit, :create, :update, :destroy, :book]
   before_action :set_service, only: [:show, :edit, :update, :destroy, :book]
 
