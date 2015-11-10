@@ -1,4 +1,4 @@
-class HairdressersController < ApplicationController
+class HairdressersController < BaseController
   before_action :authenticate_user!, except: [:index, :show, :nearby]
   before_action :set_hairdresser, only: [:show, :edit, :update, :destroy]
 

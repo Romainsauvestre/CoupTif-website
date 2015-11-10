@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :hairdressers do
     resources :services
     collection do
+      match 'post_action', via: [ :post, :options]
       get 'nearby'
     end
   end
