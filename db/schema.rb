@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126172116) do
+ActiveRecord::Schema.define(version: 20151126171805) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "service_id"
@@ -64,9 +64,12 @@ ActiveRecord::Schema.define(version: 20151126172116) do
   create_table "slots", force: :cascade do |t|
     t.time     "start_time"
     t.time     "end_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "calendar_id"
   end
+
+  add_index "slots", ["calendar_id"], name: "index_slots_on_calendar_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
