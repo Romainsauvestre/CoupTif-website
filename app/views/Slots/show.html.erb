@@ -1,13 +1,9 @@
-<%- model_class = Calendar -%>
+<%- model_class = Slot -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:day) %>:</strong></dt>
-  <dd><%= @calendar.day %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:available) %>:</strong></dt>
-  <dd><%= @calendar.available %></dd>
   <dt><strong><%= model_class.human_attribute_name(:start_time) %>:</strong></dt>
   <dd><%= @calendar.start_time %></dd>
   <dt><strong><%= model_class.human_attribute_name(:end_time) %>:</strong></dt>
@@ -15,11 +11,11 @@
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              hairdresser_calendars_path(@hairdresser), :class => 'btn btn-default'  %>
+              hairdresser_calendar_slots_path(@hairdresser, @calendar), :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_hairdresser_calendar_path(@hairdresser,@calendar), :class => 'btn btn-default' %>
+              edit_hairdresser_calendar_slot_path(@hairdresser,@calendar,@slot), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              hairdresser_calendar_path(@hairdresser,@calendar),
+              hairdresser_calendar_slot_path(@hairdresser,@calendar,@slot),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

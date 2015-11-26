@@ -15,18 +15,16 @@
     </tr>
   </thead>
   <tbody>
-    <% @calendars.each do |calendar| %>
+    <% @slots.each do |slot| %>
       <tr>
-        <td><%= link_to calendar.id, hairdresser_calendar_path(@hairdresser, calendar) %></td>
-        <td><%= calendar.day %></td>
-        <td><%= calendar.available %></td>
-        <td><%= calendar.start_time %></td>
-        <td><%= calendar.end_time %></td>
+        <td><%= link_to slot.id, hairdresser_calendar_slot_path(@hairdresser, @calendar, slot) %></td>
+        <td><%= slot.start_time %></td>
+        <td><%= slot.end_time %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_hairdresser_calendar_path(@hairdresser,calendar), :class => 'btn btn-default btn-xs' %>
+                      edit_hairdresser_calendar_slot_path(@hairdresser,@calendar,slot), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      hairdresser_calendar_path(@hairdresser,calendar),
+                      hairdresser_calendar_slot_path(@hairdresser,@calendar,slot),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -37,7 +35,7 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_hairdresser_calendar_path(@hairdresser),
+            new_hairdresser_calendar_slot_path(@hairdresser, @calendar),
             :class => 'btn btn-primary' %>
 
-<%= link_to 'Hairdresser', hairdresser_path(@hairdresser), :class => 'btn btn-default' %>
+<%= link_to 'Calendar', hairdresser_calendar_path(@hairdresser, @calendar), :class => 'btn btn-default' %>
