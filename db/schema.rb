@@ -11,19 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126172116) do
+ActiveRecord::Schema.define(version: 20151126232211) do
 
   create_table "bookings", force: :cascade do |t|
-    t.integer  "service_id"
     t.integer  "user_id"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.date     "day"
+    t.integer  "hairdresser_id"
   end
 
-  add_index "bookings", ["service_id"], name: "index_bookings_on_service_id"
+  add_index "bookings", ["hairdresser_id"], name: "index_bookings_on_hairdresser_id"
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
 
   create_table "calendars", force: :cascade do |t|
