@@ -6,11 +6,15 @@ Rails.application.routes.draw do
       match 'post_action', via: [ :post, :options]
       get 'nearby'
     end
+    resources :calendars do
+      resources :slots
+    end
   end
+
 
   root 'hairdressers#index'
 
-  post 'hairdressers/:hairdresser_id/services/:id/book' => 'services#book'
+  post 'hairdressers/:hairdresser_id/services/:id/book' => 'services#book', as: 'book_hairdresser_service'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
