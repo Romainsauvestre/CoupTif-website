@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :calendars do
       resources :slots
     end
+    resources :bookings
   end
 
 

@@ -1,10 +1,8 @@
 class ServicesController < BaseController
-  before_action :authenticate_user!, except: [:book] #TODO: remove
-  before_action :set_hairdresser, only: [:index, :show, :new, :edit, :create, :update, :destroy, :book]
-  before_action :set_service, only: [:show, :edit, :update, :destroy, :book]
+  before_action :authenticate_user!
+  before_action :set_hairdresser, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  before_action :set_service, only: [:show, :edit, :update, :destroy]
 
-  # On saute une etape de securite si on appel BOOK en JSON
-  skip_before_action :verify_authenticity_token, only: [:book]
 
   # GET /hairdressers/:hairdresser_id/services
   # GET /hairdressers/:hairdresser_id/services.json
@@ -66,22 +64,7 @@ class ServicesController < BaseController
     end
   end
 
-  # POST /hairdressers/:hairdresser_id/services/:id/book.json
-  def book
-    @booking = Booking.create(booking_params)
-    # on precise que le nouvel objet correspond au service
-    @booking.service = @service
-    #@booking.user = @user #TODO: add @user
 
-    respond_to do |format|
-      if @booking.save
-        format.json
-      else
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end    end
-
-
-  end
 
   private
   # Use callbacks to share common setup or constraints between actions.
@@ -97,10 +80,6 @@ class ServicesController < BaseController
   # Never trust parameters from the scary internet, only allow the white list through.
   def service_params
     params.require(:service).permit(:name, :price, :description, :photo)
-  end
-
-  def booking_params
-    params.require(:booking).permit(:start_time, :end_time)
   end
 
 end

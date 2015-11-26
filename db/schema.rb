@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126164734) do
+ActiveRecord::Schema.define(version: 20151126172116) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "service_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20151126164734) do
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date     "day"
   end
 
   add_index "bookings", ["service_id"], name: "index_bookings_on_service_id"

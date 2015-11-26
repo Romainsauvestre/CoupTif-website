@@ -1,11 +1,11 @@
 class SlotsController < BaseController
-  before_action :authenticate_user!
-  before_action :set_hairdresser, only: [:index, :show, :new, :edit, :create, :update, :destroy]
-  before_action :set_calendar, only: [:index, :show, :new, :edit, :create, :update, :destroy]
-  before_action :set_slot, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:book] #TODO: remove
+  before_action :set_hairdresser, only: [:index, :show, :new, :edit, :create, :update, :destroy, :book]
+  before_action :set_calendar, only: [:index, :show, :new, :edit, :create, :update, :destroy, :book]
+  before_action :set_slot, only: [:show, :edit, :update, :destroy, :book]
 
   # On saute une etape de securite si on appelle BOOK en JSON
-  #skip_before_action :verify_authenticity_token, only: [:book]
+  skip_before_action :verify_authenticity_token, only: [:book]
 
   # GET /hairdressers/:hairdresser_id/calendars/:calendar_id
   # GET /hairdressers/:hairdresser_id/calendars/:calendar_id.json
@@ -68,6 +68,26 @@ class SlotsController < BaseController
   end
 
 
+  # POST /hairdressers/:hairdresser_id/calendars/:calendar_id/slots/:id/book.json
+  def book
+    @booking = Booking.create(booking_params)
+    # on precise que le nouvel objet correspond au service
+    #@booking.service = @service #TODO: find a way to transmit the service wanted through the precedent link
+    #@booking.user = @user #TODO: add @user
+    @booking.day = @calendar.day
+    @booking.start_time = @slot.start_time
+    @booking.end_time = @slot.end_time
+
+    respond_to do |format|
+      if @booking.save
+        format.json
+      else
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end    end
+
+
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_hairdresser
@@ -81,12 +101,17 @@ class SlotsController < BaseController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_slot
-    @slot = @hairdresser.calendar.slots.find(params[:id])
+    @slot = @calendar.slots.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def slot_params
     params.require(:slot).permit(:start_time, :end_time)
+  end
+
+
+  def booking_params
+    params.require(:booking).permit()
   end
 
 end
