@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20151126232211) do
 
   create_table "bookings", force: :cascade do |t|
+    t.integer  "service_id"
     t.integer  "user_id"
     t.datetime "start_time"
     t.datetime "end_time"
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 20151126232211) do
   end
 
   add_index "bookings", ["hairdresser_id"], name: "index_bookings_on_hairdresser_id"
+  add_index "bookings", ["service_id"], name: "index_bookings_on_service_id"
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
 
   create_table "calendars", force: :cascade do |t|
