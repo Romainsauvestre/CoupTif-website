@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 
   root 'hairdressers#index'
 
-  post 'hairdressers/:hairdresser_id/services/:id/book' => 'services#book', as: 'book_hairdresser_service'
+  post 'hairdressers/:hairdresser_id/calendars/:calendar_id/slots/:id/book' => 'slots#book',
+       as: 'book_hairdresser_calendar_slot'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

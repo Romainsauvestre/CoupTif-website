@@ -79,7 +79,7 @@ class BookingsController < BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def booking_params
-    params.require(:booking).permit()
+    params.require(:booking).permit(:calendar_id, :slot_id)
   end
 
 end

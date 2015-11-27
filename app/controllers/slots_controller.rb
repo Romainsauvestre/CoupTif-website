@@ -67,27 +67,6 @@ class SlotsController < BaseController
     end
   end
 
-
-  # POST /hairdressers/:hairdresser_id/calendars/:calendar_id/slots/:id/book.json
-  def book
-    @booking = Booking.create(booking_params)
-    # on precise que le nouvel objet correspond au service
-    #@booking.service = @service #TODO: find a way to transmit the service wanted through the precedent link
-    #@booking.user = @user #TODO: add @user
-    @booking.day = @calendar.day
-    @booking.start_time = @slot.start_time
-    @booking.end_time = @slot.end_time
-
-    respond_to do |format|
-      if @booking.save
-        format.json
-      else
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end    end
-
-
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_hairdresser
@@ -108,10 +87,4 @@ class SlotsController < BaseController
   def slot_params
     params.require(:slot).permit(:start_time, :end_time)
   end
-
-
-  def booking_params
-    params.require(:booking).permit()
-  end
-
 end
