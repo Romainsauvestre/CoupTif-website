@@ -1,5 +1,5 @@
 class ServicesController < BaseController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!  TODO: take care of users
   before_action :set_hairdresser, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 
