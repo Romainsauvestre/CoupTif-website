@@ -48,6 +48,41 @@ Calendar.create(
     hairdresser_id: 1
 )
 
+Calendar.create(
+    day: "2015-12-04",
+    available: true,
+    start_time: "09:00:00.000",
+    end_time: "16:00:00.000",
+    hairdresser_id: 1
+)
+
+Calendar.create(
+    day: "2015-12-05",
+    available: false,
+    hairdresser_id: 1
+)
+
+
+Calendar.create(
+    day: "2015-12-06",
+    available: false,
+    hairdresser_id: 1
+)
+
+
+Calendar.create(
+    day: "2015-12-24",
+    available: false,
+    hairdresser_id: 1
+)
+
+Calendar.create(
+    day: "2015-12-25",
+    available: false,
+    hairdresser_id: 1
+)
+
+
 
 Slot.create(
     start_time: "09:00:00.000",
