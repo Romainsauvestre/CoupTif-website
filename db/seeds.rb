@@ -55,8 +55,22 @@ Hairdresser.create(
 Service.create(
     name: "Coupe Homme",
     description: "Coupe simple et pas cher",
+    price: 15.0,
+    hairdresser_id: 7
+)
+
+Service.create(
+    name: "Coupe Femme",
+    description: "Coupe simple et pas cher",
+    price: 20.0,
+    hairdresser_id: 7
+)
+
+Service.create(
+    name: "Coupe Enfant",
+    description: "Coupe simple et pas cher",
     price: 10.0,
-    hairdresser_id: 1
+    hairdresser_id: 7
 )
 
 Calendar.create(
@@ -64,7 +78,7 @@ Calendar.create(
     available: true,
     start_time: "08:00:00.000",
     end_time: "20:00:00.000",
-    hairdresser_id: 1
+    hairdresser_id: 7
 )
 
 Calendar.create(
@@ -72,8 +86,43 @@ Calendar.create(
     available: true,
     start_time: "08:00:00.000",
     end_time: "16:00:00.000",
-    hairdresser_id: 1
+    hairdresser_id: 7
 )
+
+Calendar.create(
+    day: "2015-12-04",
+    available: true,
+    start_time: "09:00:00.000",
+    end_time: "16:00:00.000",
+    hairdresser_id: 7
+)
+
+Calendar.create(
+    day: "2015-12-05",
+    available: false,
+    hairdresser_id: 7
+)
+
+
+Calendar.create(
+    day: "2015-12-06",
+    available: false,
+    hairdresser_id: 7
+)
+
+
+Calendar.create(
+    day: "2015-12-24",
+    available: false,
+    hairdresser_id: 7
+)
+
+Calendar.create(
+    day: "2015-12-25",
+    available: false,
+    hairdresser_id: 7
+)
+
 
 Calendar.create(
     day: "2015-12-04",
@@ -114,19 +163,19 @@ Calendar.create(
 Slot.create(
     start_time: "09:00:00.000",
     end_time: "10:30:00.000",
-    calendar_id: 1
+    calendar_id: 9
 )
 
 
 Slot.create(
     start_time: "11:00:00.000",
     end_time: "12:30:00.000",
-    calendar_id: 1
+    calendar_id: 9
 )
 
 
 Slot.create(
     start_time: "14:30:00.000",
     end_time: "16:30:00.000",
-    calendar_id: 1
+    calendar_id: 9
 )
