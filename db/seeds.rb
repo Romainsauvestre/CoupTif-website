@@ -7,14 +7,41 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Hairdresser.create(
-    first_name: "Jean",
-    last_name: "Pierre",
+    first_name: "Bruno",
+    last_name: "Martinaud",
     description: " Coiffeur depuis 20 ans",
-    photo: "http://static.astucesdefilles.com/wp-content/uploads/2015/03/42.jpg",
+    photo: "http://www.my-business-plan.fr/sites/default/files/fichiers/images/articles/bruno%20martinaud.jpg",
     lat: 48.8771744,
     lng: 2.3013612
 )
 
+
+Hairdresser.create(
+    first_name: "Olivier",
+    last_name: "Moindrot",
+    description: "Specialise dans la coiffure pour homme",
+    photo: "http://www.boutique-auroyaumedumariage.com/catalog/imgcache/260234ARDM6121351259891167260102234.jpg",
+    lat: 48.8658748,
+    lng: 2.3757088
+)
+
+Hairdresser.create(
+    first_name: "Adrien",
+    last_name: "Gsell",
+    description: " Coiffeur depuis 5 ans",
+    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/8/000/261/2cb/2624c3a.jpg",
+    lat: 48.8658748,
+    lng: 2.3757088
+)
+
+Hairdresser.create(
+    first_name: "Ghyslain",
+    last_name: "De Juvigny",
+    description: " Coiffeur depuis 10 ans",
+    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJEAAAAJDdkMGFkNTIwLWFiYWEtNGQ5Ny05NWU0LTRiOTk4MTUwZGEwOA.jpg",
+    lat: 48.8658748,
+    lng: 2.3757088
+)
 
 Hairdresser.create(
     first_name: "Jean",
